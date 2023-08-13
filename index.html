@@ -1,16 +1,32 @@
+<!-- Copyright (c) 2023 Andy Smith -->
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Hello, world!</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="" />
-  <link rel="stylesheet" type="text/css" href="style.css" />
-  <link rel="icon" href="favicon.png">
-  <link rel="manifest" href="manifest.webmanifest">
-</head>
-<body>
-  <h1>Hello, world!</h1>
-  <script src="app.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello, world!</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" type="text/css" href="./css/style.css" />
+    <link rel="icon" href="favicon.ico" />
+    <link rel="manifest" href="manifest.webmanifest" />
+  </head>
+  <body onload="main()">
+    <div id="div-header">
+      <div id="div-title"></div>
+    </div>
+    <div id="div-body">
+      <div id="div-body-set-width">
+        <div class="card"></div>
+        <div class="card"></div>
+        <div class="card"></div>
+        <div class="card"></div>
+        <div class="card"></div>
+        <div class="card"></div>
+        <div class="card"></div>
+      </div>
+    </div>
+    <div id="div-footer"></div>
+    <script src="./js/app.js"></script>
+    <script src="./js/helpers.js"></script>
+  </body>
 </html>
