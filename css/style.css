@@ -1,6 +1,7 @@
 /** Copyright (c) 2023 Andy Smith */
 
-html, body {
+html,
+body {
     font-family: Arial, Helvetica, sans-serif;
     margin: 0px;
     min-height: 100%;
@@ -13,21 +14,6 @@ html, body {
     height: 100px;
     margin: 10px;
     width: 300px;
-}
-
-/* Title of the website */
-#div-title {
-    bottom: 0px;
-    left: 50%;
-    position: absolute;
-    transform:translateX(-50%);
-}
-
-/* Top portion of the header, containing title */
-#div-header {
-    font-size: 40px;
-    height: 100px;
-    position: relative;
 }
 
 /* Main body of website */
@@ -47,3 +33,28 @@ html, body {
     height: 100px;
 }
 
+/* ************** Header ************** */
+
+/* Title of the website */
+#div-title {
+    bottom: 0px;
+    font-size: 40px;
+    /* left: 50%;
+    transform: translateX(-50%); */
+}
+
+/* Top portion of the header, containing title */
+#div-header {
+    height: 100px;
+    position: relative;
+}
+
+/* The lower section of the header */
+#div-header-low {
+    bottom: 20px;
+    display: inline-block;
+    height: 50px;
+    position: absolute;
+    text-align: center;
+    width: 100vw;
+}

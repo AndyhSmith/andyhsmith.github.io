@@ -7,33 +7,33 @@
 
 // Globals
 var glo = {
-    debug: 1,     // When set to 1 show console logs
-    debugDiv: 1,  // When set to 1 show div background colors
-    tag: {        // HTML tags
-        title: "div-title",                     // Main Title
-        divHeader: "div-header",                // Div Header
-        divBody: "div-body",                    // Div Body
-        divBodySetWidth: "div-body-set-width",  // Div set max width
-        divFooter: "div-footer"                 // Div Body
+    debug: 1, // When set to 1 show console logs
+    debugDiv: 1, // When set to 1 show div background colors
+    tag: {
+        // HTML tags
+        divTitle: "div-title", // Main Title
+        divHeader: "div-header", // Div Header
+        divHeaderLow: "div-header-low", // Header lower section
+        divBody: "div-body", // Div Body
+        divBodySetWidth: "div-body-set-width", // Div set max width
+        divQuote: "div-quote", // Div top quote
+        divFooter: "div-footer", // Div Body
     },
-    titleMessages: [
-        "Hey!",
-        "Welcome"
-    ]
-} 
-
+    titleMessages: ["Hey!", "Welcome"],
+};
 
 /**
  * Main JavaScript entry point
  * ahs 08/23 - Created
  */
 function main() {
-    debug()
+    debug();
     console.log("main()");
-    console.log(glo)
-   
+    console.log(glo);
+
     buildTitle();
-    
+    const s = new Option().style;
+    console.log(s.color);
 }
 
 /**
@@ -41,10 +41,9 @@ function main() {
  * ahs 08/23 - Created
  */
 function buildTitle() {
-    console.log("buildTitle()")
-    document.getElementById(glo.tag.title).innerHTML = randomArr(glo.titleMessages);
+    console.log("buildTitle()");
+    document.getElementById(glo.tag.divTitle).innerHTML = randomArr(glo.titleMessages);
 }
-
 
 /**
  * Debug help
@@ -53,20 +52,21 @@ function buildTitle() {
 function debug() {
     // Disable the logger
     if (!glo.debug) {
-        console.log = function(){};
+        console.log = function () {};
     }
-    console.log("Debugging Enabled")
-    console.log("debug()")
+    console.log("Debugging Enabled");
+    console.log("debug()");
 
-    if (glo.debugDiv) { // Set the background color of various div objects
-        console.log("Debug Div Enabled")
-        document.getElementById(glo.tag.divHeader).style.backgroundColor = "pink"
-        document.getElementById(glo.tag.divBody).style.backgroundColor = "steelBlue"
-        document.getElementById(glo.tag.divBodySetWidth).style.backgroundColor = "lightBlue"
-        document.getElementById(glo.tag.divFooter).style.backgroundColor = "orange"
-        document.body.style.backgroundColor = "yellow"
+    if (glo.debugDiv) {
+        // Set the background color of various div objects
+        console.log("Debug Div Enabled");
+        document.getElementById(glo.tag.divHeader).style.backgroundColor = "pink";
+        document.getElementById(glo.tag.divHeaderLow).style.backgroundColor = "teal";
+        document.getElementById(glo.tag.divBody).style.backgroundColor = "steelBlue";
+        document.getElementById(glo.tag.divBodySetWidth).style.backgroundColor = "lightBlue";
+        document.getElementById(glo.tag.divFooter).style.backgroundColor = "orange";
+        document.getElementById(glo.tag.divTitle).style.backgroundColor = "green";
+        document.getElementById(glo.tag.divQuote).style.backgroundColor = "purple";
+        document.body.style.backgroundColor = "yellow";
     }
 }
-
-
-
