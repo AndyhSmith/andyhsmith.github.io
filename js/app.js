@@ -60,13 +60,13 @@ function debug() {
     if (glo.debugDiv) {
         // Set the background color of various div objects
         console.log("Debug Div Enabled");
-        document.getElementById(glo.tag.divHeader).style.backgroundColor = "pink";
-        document.getElementById(glo.tag.divHeaderLow).style.backgroundColor = "teal";
-        document.getElementById(glo.tag.divBody).style.backgroundColor = "steelBlue";
-        document.getElementById(glo.tag.divBodySetWidth).style.backgroundColor = "lightBlue";
-        document.getElementById(glo.tag.divFooter).style.backgroundColor = "orange";
-        document.getElementById(glo.tag.divTitle).style.backgroundColor = "green";
-        document.getElementById(glo.tag.divQuote).style.backgroundColor = "purple";
-        document.body.style.backgroundColor = "yellow";
+        document.getElementById(glo.tag.divHeader).style.backgroundColor = "Fuchsia";
+        document.getElementById(glo.tag.divHeaderLow).style.backgroundColor = "LimeGreen";
+        document.getElementById(glo.tag.divBody).style.backgroundColor = "PaleTurquoise";
+        document.getElementById(glo.tag.divBodySetWidth).style.backgroundColor = "LemonChiffon";
+        document.getElementById(glo.tag.divFooter).style.backgroundColor = "DarkOliveGreen";
+        document.getElementById(glo.tag.divTitle).style.backgroundColor = "MidnightBlue";
+        document.getElementById(glo.tag.divQuote).style.backgroundColor = "MediumPurple";
+        document.body.style.backgroundColor = "MediumSlateBlue";
     }
 }
