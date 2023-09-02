@@ -32,8 +32,8 @@ function main() {
     console.log(glo);
 
     buildTitle();
-    const s = new Option().style;
-    console.log(s.color);
+
+    buildCards();
 }
 
 /**
@@ -68,5 +68,23 @@ function debug() {
         document.getElementById(glo.tag.divTitle).style.backgroundColor = "MidnightBlue";
         document.getElementById(glo.tag.divQuote).style.backgroundColor = "MediumPurple";
         document.body.style.backgroundColor = "MediumSlateBlue";
+    }
+}
+
+/** Sets up collapsible cards */
+function buildCards() {
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+
+    for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        });
     }
 }
