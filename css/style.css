@@ -22,8 +22,15 @@ div {
 
 /* Sets the max width for the body */
 #div-body-set-width {
-    display: inline-block;
-    max-width: 400px;
+    max-width: 500px;
+}
+
+.content-area {
+    position: relative;
+    background-color: #d1d1d1;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 20px;
 }
 
 /* Content at the bottom of the website */
@@ -38,13 +45,9 @@ div {
     background-color: white;
     cursor: pointer;
     display: inline-block;
-    height: 100px;
     margin: 0px;
-    width: 300px;
-    margin-top: 20px;
-}
-
-.collapsible {
+    width: 500px;
+    max-width: 100%;
 }
 
 .active,
@@ -57,7 +60,17 @@ div {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.2s ease-out;
-    background-color: #f1f1f1;
+    background-color: rgba(0.3, 0.3, 0.3, 0.1);
+    margin-bottom: 20px;
+}
+
+.inner-content {
+    padding: 30px;
+}
+
+img {
+    width: 100%;
+    vertical-align: bottom;
 }
 
 /* ************** Header ************** */
