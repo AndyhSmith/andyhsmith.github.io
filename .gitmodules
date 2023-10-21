@@ -2,3 +2,6 @@
 [submodule "prj/hive"]
 	path = prj/hive
 	url = git@github.com:AndyhSmith/Project-Bugs.git
+[submodule "prj/mandelbrot"]
+	path = prj/mandelbrot
+	url = git@github.com:AndyhSmith/Project-Mandelbrot-Set-Javascript.git
