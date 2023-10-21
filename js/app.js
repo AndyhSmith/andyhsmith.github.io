@@ -7,8 +7,8 @@
 
 // Globals
 var glo = {
-    debug: 1, // When set to 1 show console logs
-    debugDiv: 1, // When set to 1 show div background colors
+    debug: 0, // When set to 1 show console logs
+    debugDiv: 0, // When set to 1 show div background colors
     tag: {
         // HTML tags
         divTitle: "div-title", // Main Title

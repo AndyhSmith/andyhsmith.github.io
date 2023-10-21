@@ -9,6 +9,10 @@ body {
     overflow-x: hidden;
 }
 
+a {
+    all: unset;
+}
+
 div {
     margin: 0px;
     padding: 0px;
@@ -27,7 +31,7 @@ div {
 
 .content-area {
     position: relative;
-    background-color: #d1d1d1;
+    /* background-color: #d1d1d1; */
     left: 50%;
     transform: translateX(-50%);
     margin-bottom: 20px;
@@ -50,10 +54,9 @@ div {
     max-width: 100%;
 }
 
-.active,
+/* .active,
 .collapsible:hover {
-    background-color: #555;
-}
+} */
 
 .content {
     padding: 0 18px;
@@ -62,6 +65,7 @@ div {
     transition: max-height 0.2s ease-out;
     background-color: rgba(0.3, 0.3, 0.3, 0.1);
     margin-bottom: 20px;
+    display: block;
 }
 
 .inner-content {
