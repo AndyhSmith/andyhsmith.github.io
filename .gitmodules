@@ -1,12 +1,4 @@
-[submodule "Project-Bugs"]
-	path = Project-Bugs
-	url = git@github.com:AndyhSmith/Project-Bugs.git
-[submodule "proj"]
-	path = proj
-	url = git@github.com:AndyhSmith/Project-Bugs.git
-[submodule "proj2/test"]
-	path = proj2/test
-	url = git@github.com:AndyhSmith/Project-Bugs.git
+
 [submodule "prj/hive"]
 	path = prj/hive
 	url = git@github.com:AndyhSmith/Project-Bugs.git
