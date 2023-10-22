@@ -5,3 +5,6 @@
 [submodule "prj/mandelbrot"]
 	path = prj/mandelbrot
 	url = git@github.com:AndyhSmith/Project-Mandelbrot-Set-Javascript.git
+[submodule "prj/tree"]
+	path = prj/tree
+	url = git@github.com:AndyhSmith/Project-Animated-Tree.git
