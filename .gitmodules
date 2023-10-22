@@ -8,3 +8,6 @@
 [submodule "prj/tree"]
 	path = prj/tree
 	url = git@github.com:AndyhSmith/Project-Animated-Tree.git
+[submodule "prj/menusmith"]
+	path = prj/menusmith
+	url = git@github.com:AndyhSmith/Project-Pantry.git
