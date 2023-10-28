@@ -1,3 +1,3 @@
 Load a submodule
 
-git submodule add -f https://github.com/AndyhSmith/Project-Mandelbrot-Set-Javascript.git ./prj/mandelbrot
+git submodule add -f git@github.com:AndyhSmith/Project-Particles.git ./prj/particles

@@ -82,6 +82,10 @@ img {
     vertical-align: bottom;
 }
 
+.gif {
+    padding-bottom: 18px;
+}
+
 /* ************** Header ************** */
 
 /* Title of the website */
@@ -139,7 +143,7 @@ img {
     position: absolute;
     width: 30px;
     height: 30px;
-    top: 55%;
+    top: 40px;
     right: 20px;
     margin: -20px 0 0 -20px;
     -webkit-transform: rotate(-45deg);
