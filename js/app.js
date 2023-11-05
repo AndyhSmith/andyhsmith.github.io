@@ -19,7 +19,11 @@ var glo = {
         divQuote: "div-quote", // Div top quote
         divFooter: "div-footer", // Div Body
     },
-    titleMessages: ["Hey!", "Welcome"],
+    titleMessages: [
+        "<a class='link' target='_blank' href='https://en.wikipedia.org/wiki/Paprika'>Paprika➚</a> is often made from dried and crushed sweet bell peppers (capsicum).",
+        "<a class='link' target='_blank' href='https://en.wikipedia.org/wiki/Blue_lava'>Blue Lava➚</a> is is a thing!",
+        "A day on the planet Venus is longer than its year.",
+    ],
 };
 
 /**
@@ -42,7 +46,7 @@ function main() {
  */
 function buildTitle() {
     console.log("buildTitle()");
-    // document.getElementById(glo.tag.divTitle).innerHTML = randomArr(glo.titleMessages);
+    document.getElementById(glo.tag.divQuote).innerHTML = randomArr(glo.titleMessages);
 }
 
 /**
