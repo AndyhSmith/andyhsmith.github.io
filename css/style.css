@@ -105,6 +105,7 @@ div {
     opacity: 0;
     transition: 0.3s ease-out;
     cursor: pointer;
+    pointer-events: none;
 }
 
 /* .active,
