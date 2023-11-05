@@ -14,3 +14,6 @@
 [submodule "prj/particles"]
 	path = prj/particles
 	url = git@github.com:AndyhSmith/Project-Particles.git
+[submodule "prj/world"]
+	path = prj/world
+	url = git@github.com:AndyhSmith/Project-Procedural-World.git
