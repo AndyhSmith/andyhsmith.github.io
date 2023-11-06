@@ -23,6 +23,13 @@ var glo = {
         "<a class='link' target='_blank' href='https://en.wikipedia.org/wiki/Paprika'>Paprika➚</a> is often made from dried and crushed sweet bell peppers (capsicum).",
         "<a class='link' target='_blank' href='https://en.wikipedia.org/wiki/Blue_lava'>Blue Lava➚</a> is is a thing!",
         "A day on the planet Venus is longer than its year.",
+        "Before you can write poetry you need food, warmth, and shelter.",
+        "A rising tide lifts all ships.",
+        "We are blessed to live at a higher standard than many ancient kings and emperors.",
+        "Intrinsic motivation turns work into play. Extrinsic motivation turns play into work.",
+        "<s>No because...</s> Yes if...",
+        "There is always a choice",
+        "Improvement will happen by change not chance.",
     ],
 };
 
