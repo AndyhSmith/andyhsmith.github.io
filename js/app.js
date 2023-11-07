@@ -53,7 +53,7 @@ function main() {
  */
 function buildTitle() {
     console.log("buildTitle()");
-    document.getElementById(glo.tag.divQuote).innerHTML = randomArr(glo.titleMessages);
+    // document.getElementById(glo.tag.divQuote).innerHTML = randomArr(glo.titleMessages);
 }
 
 /**
