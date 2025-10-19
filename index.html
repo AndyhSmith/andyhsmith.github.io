@@ -1,127 +1,288 @@
-<!-- Copyright (c) 2023 Andy Smith -->
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <title>AndyHSmith</title>
-        <meta name="viewport" content="width=device-width,initial-scale=1" />
-        <meta name="description" content="" />
-        <link rel="stylesheet" type="text/css" href="./css/style.css" />
-        <link rel="icon" href="favicon.ico" />
-        <!-- <link rel="manifest" href="manifest.webmanifest" /> -->
-    </head>
-    <body onload="main()">
-        <!-- Header -->
-        <div id="div-header">
-            <div id="div-header-low">
-                <!-- <div id="caution">This Website Is Under Construction</div> -->
-                <!-- <div id="announcement">Last Updated 10/28/23</div> -->
-                <div id="div-title">AndyHSmith.com</div>
-                <!-- <div id="div-quote" onclick="buildTitle()">...</div> -->
-                <div id="div-quote">...</div>
-            </div>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark light" />
+  <title>Andy H Smith — Software Developer</title>
+  <meta name="description" content="Projects by Andy Smith — software developer. A clean, single-page portfolio that auto-loads public GitHub repositories and shows live previews." />
+  <style>
+    :root{
+      --bg-1:#0f1222;
+      --bg-2:#12162b;
+      --accent:#95d2ff;
+      --accent-2:#f6a7ff;
+      --text:#e8ebf1;
+      --muted:#a7afc2;
+      --card:#151a31cc;
+      --card-border:#242a46;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 18px;
+      --maxw: 1200px;
+    }
+
+    body{
+      margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color:var(--text); background: radial-gradient(1200px 800px at 10% -10%, #2a2f52, transparent 70%), radial-gradient(900px 700px at 110% 20%, #253e6c, transparent 60%), linear-gradient(180deg, var(--bg-1), var(--bg-2));
+      min-height:100svh; overflow-x:hidden;
+    }
+
+    .ribbon{ position:fixed; inset:-20vmax; z-index:-1; filter: blur(40px) saturate(120%); opacity:.55; pointer-events:none; }
+    .r1,.r2,.r3{ position:absolute; inset:0; background: conic-gradient(from 180deg at 50% 50%, rgba(149,210,255,.6), rgba(246,167,255,.6), rgba(149,210,255,.6)); mix-blend-mode: screen; animation: float 18s linear infinite; }
+    .r2{ animation-duration: 28s; transform: rotate(40deg) scale(1.2); }
+    .r3{ animation-duration: 36s; transform: rotate(-25deg) scale(1.4); }
+    @keyframes float{ 0%{ transform: translateY(-2%) rotate(0deg);} 50%{transform: translateY(2%) rotate(180deg);} 100%{ transform: translateY(-2%) rotate(360deg);} }
+
+    header{ position:sticky; top:0; backdrop-filter: blur(10px) saturate(120%); background: linear-gradient(180deg, rgba(10,12,25,.7), rgba(10,12,25,.35)); border-bottom:1px solid #1e233b; z-index:10; }
+    .container{ max-width: var(--maxw); margin:0 auto; padding:18px clamp(14px, 3vw, 28px); }
+
+    .top{ display:flex; align-items:center; gap:16px; justify-content:space-between; }
+    .brand{ display:flex; gap:14px; align-items:center; }
+    .logo{ width:42px; height:42px; border-radius:12px; background: linear-gradient(135deg, var(--accent), var(--accent-2)); box-shadow:0 8px 30px rgba(149,210,255,.25); position:relative; overflow:hidden; }
+    .logo::after{ content:""; position:absolute; inset:2px; border-radius:10px; background:radial-gradient(200px 120px at 30% 30%, rgba(255,255,255,.35), transparent 50%), rgba(12,15,30,.65); }
+    h1{ font-size: clamp(18px, 2.4vw, 28px); margin:0; letter-spacing:.3px; }
+    .subtitle{ color:var(--muted); font-size: clamp(12px, 1.8vw, 16px); }
+
+    main{ padding: 12px 0 60px; }
+
+    .intro{ max-width: var(--maxw); margin: 24px auto; padding: 0 clamp(14px, 3vw, 28px); display:grid; gap:16px; grid-template-columns: 1fr; align-items:center; }
+    .intro .headline{ font-size: clamp(24px, 5.4vw, 54px); line-height:1.05; letter-spacing:.3px; margin:0; }
+    .intro .lead{ color:var(--muted); font-size: clamp(14px, 2.1vw, 18px); margin:4px 0 8px; }
+    /* search */
+    .search{ display:flex; align-items:center; gap:10px; margin-top:6px; flex-wrap:wrap; }
+    .search input{ flex:1 1 320px; max-width:640px; background:#0e142a; color:#e7ecff; border:1px solid #2a3157; border-radius:12px; padding:12px 14px; font-size:14px; outline:none; box-shadow: inset 0 0 0 9999px rgba(255,255,255,0); transition:border-color .2s ease, box-shadow .2s ease; }
+    .search input:focus{ border-color:#4f67ff; box-shadow:0 0 0 4px rgba(79,103,255,.15); }
+
+    .grid{ max-width:var(--maxw); margin: 24px auto 0; padding:0 clamp(14px, 3vw, 28px); display:grid; grid-template-columns: repeat(auto-fill, minmax(260px,1fr)); gap:18px; }
+
+    .card{ position:relative; overflow:hidden; border-radius: var(--radius); background: var(--card); border:1px solid var(--card-border); box-shadow: var(--shadow); transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
+    .card:hover{ transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,.45); border-color:#3a4270; }
+
+    .thumb-wrap{ aspect-ratio: 16/10; background:linear-gradient(180deg, #1a1f38, #0e1327); display:grid; place-items:center; overflow:hidden; }
+    .thumb{ width:100%; height:100%; object-fit:cover; display:block; }
+    .fallback{ font-size:12px; color:#91a1d9; text-align:center; padding:16px; }
+
+    .card-body{ padding:14px 14px 16px; display:grid; gap:10px; }
+    .title-row{ display:flex; gap:10px; align-items:center; justify-content:space-between; }
+    .card h3{ margin:0; font-size:16px; letter-spacing:.2px; }
+    .meta{ font-size:12px; color:var(--muted); }
+
+    .btn-row{ display:flex; gap:10px; }
+    .btn{ appearance:none; border:1px solid #394063; background:#0e142a; color:#d7e1ff; padding:8px 10px; border-radius:10px; font-size:12px; cursor:pointer; transition:all .2s ease; }
+    .btn:hover{ border-color:#5360a6; background:#111a39; }
+
+    a.cardlink{ position:absolute; inset:0; z-index:1; }
+
+    .skeleton{ background: linear-gradient(90deg, #1a2040, #232a52, #1a2040); background-size: 300% 100%; animation: shimmer 1.2s ease-in-out infinite; }
+    @keyframes shimmer{ 0%{background-position: 0% 0;} 100%{background-position: -300% 0;} }
+
+    footer{ max-width:var(--maxw); margin:40px auto; padding: 0 clamp(14px, 3vw, 28px); color:var(--muted); font-size:12px; text-align:center; }
+
+    @media (max-width:480px){ .container{padding:14px 14px;} .intro{margin:12px auto;} }
+  </style>
+</head>
+<body>
+  <div class="ribbon"><div class="r1"></div><div class="r2"></div><div class="r3"></div></div>
+
+  <header>
+    <div class="container top">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <h1>Andy H Smith</h1>
+          <div class="subtitle">Software Developer</div>
         </div>
-        <!-- Body -->
-        <div id="div-body">
-            <div id="div-body-set-width" class="content-area">
-                <div class="grouper">
-                    <div class="sub-grouper">
-                        <div class="card collapsible">
-                            <img src="./img/menusmith600x150.png" alt="Image" />
-                        </div>
-                        <a class="content" href="prj\menusmith\index.html">
-                            <div class="inner-content">
-                                <b>Menu Smith</b> - Gather recipes, manage a shopping list, and track what you have in your pantry.
-                            </div>
-                            <div class="arrow"></div>
-                            <img class="gif" src="./img/gifs/menusmith.gif" alt="Image" />
-                        </a>
-                    </div>
-                    <button class="grouper-button">Learn More</button>
-                </div>
+      </div>
+    </div>
+  </header>
 
-                <div class="grouper">
-                    <div class="sub-grouper">
-                        <div class="card collapsible">
-                            <img src="./img/particles600x150.png" alt="Image" />
-                        </div>
-                        <a class="content" href="prj\particles\index.html">
-                            <div class="inner-content">
-                                <b>Particle Simulation</b> - Adjust the push and pull of hundreds of particles to create unique behavior.
-                            </div>
-                            <div class="arrow"></div>
-                            <img class="gif" src="./img/gifs/particles.gif" alt="Image" />
-                        </a>
-                    </div>
-                    <button class="grouper-button">Learn More</button>
-                </div>
+  <main>
+    <section class="intro">
+      <h2 class="headline">Building clean, modern, fun, software.</h2>
+      <p class="lead">A stream of my public repositories fetched automatically from GitHub.</p>
+      <div class="search" role="search">
+        <input id="search" type="search" placeholder="Search repositories (name, description, language, topics)…" aria-label="Search repositories" />
+        <span id="resultCount" class="meta" aria-live="polite"></span>
+      </div>
+    </section>
 
-                <div class="grouper">
-                    <div class="sub-grouper">
-                        <div class="card collapsible">
-                            <img src="./img/mandelbrot600x150.png" alt="Image" />
-                        </div>
-                        <a class="content" href="prj\mandelbrot\index.html">
-                            <div class="inner-content">
-                                <b>Mandelbrot Set</b> - Zoom and pan around a Mandelbrot Set. Save images, and animations.
-                            </div>
-                            <div class="arrow"></div>
-                            <img class="gif" src="./img/gifs/mandelbrot.gif" alt="Image" />
-                        </a>
-                    </div>
-                    <button class="grouper-button">Learn More</button>
-                </div>
+    <section class="grid" id="grid" aria-live="polite"></section>
 
-                <div class="grouper">
-                    <div class="sub-grouper">
-                        <div class="card collapsible">
-                            <img src="./img/bugs600x150.png" alt="Image" />
-                        </div>
-                        <a class="content" href="prj\hive\v1\index.html">
-                            <div class="inner-content"><b>Hive</b> - Animated bugs walk around and that's about it. Enjoy the show!</div>
-                            <div class="arrow"></div>
-                            <img class="gif" src="./img/gifs/bugs.gif" alt="Image" />
-                        </a>
-                    </div>
-                    <button class="grouper-button">Learn More</button>
-                </div>
+    <footer>
+      <p>© <span id="yr"></span> Andy H Smith — crafted with mostly vanilla HTML, CSS, and JS.</p>
+    </footer>
+  </main>
 
-                <div class="grouper">
-                    <div class="sub-grouper">
-                        <div class="card collapsible">
-                            <img src="./img/tree600x150.png" alt="Image" />
-                        </div>
-                        <a class="content" href="prj\tree\index.html">
-                            <div class="inner-content">
-                                <b>Tree Animation</b> - A randomly generated tree with moving branches. Change the season.
-                            </div>
-                            <div class="arrow"></div>
-                            <img class="gif" src="./img/gifs/tree.gif" alt="Image" />
-                        </a>
-                    </div>
-                    <button class="grouper-button">Learn More</button>
-                </div>
+  <script>
+    const GITHUB_USER = 'andyhsmith';
+    const FALLBACK_SVG = encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 750'>
+      <defs>
+        <linearGradient id='g' x1='0' x2='1' y1='0' y2='1'>
+          <stop offset='0' stop-color='#2a2f52'/>
+          <stop offset='1' stop-color='#0e1327'/>
+        </linearGradient>
+      </defs>
+      <rect width='100%' height='100%' fill='url(#g)'/>
+      <g fill='white' fill-opacity='.8'>
+        <text x='50%' y='50%' font-family='system-ui,Segoe UI,Roboto' font-size='46' text-anchor='middle'>preview.png</text>
+      </g>
+    </svg>`);
+    const LOCAL_FALLBACK = `data:image/svg+xml;charset=utf-8,${FALLBACK_SVG}`;
 
-                <div class="grouper">
-                    <div class="sub-grouper">
-                        <div class="card collapsible">
-                            <img src="./img/world.png" alt="Image" />
-                        </div>
-                        <a class="content" href="prj\world\index.html">
-                            <div class="inner-content">
-                                <b>Perlin World</b> - Randomly generated terrain created using perlin noise. Zoom and pan around the world.
-                            </div>
-                            <div class="arrow"></div>
-                            <img class="gif" src="./img/gifs/world.gif" alt="Image" />
-                        </a>
-                    </div>
-                    <button class="grouper-button">Learn More</button>
-                </div>
-            </div>
+    const grid = document.getElementById('grid');
+    const year = document.getElementById('yr');
+    const searchInput = document.getElementById('search');
+    const resultCount = document.getElementById('resultCount');
+    year.textContent = new Date().getFullYear();
+    let cards = [];
+
+    function addSkeletonCards(n=6){
+      for(let i=0;i<n;i++){
+        const s = document.createElement('div');
+        s.className = 'card';
+        s.innerHTML = `
+          <div class='thumb-wrap skeleton'></div>
+          <div class='card-body'>
+            <div class='title-row'><div class='skeleton' style='height:14px;width:60%'></div><div class='skeleton' style='height:12px;width:70px'></div></div>
+            <div class='skeleton' style='height:10px;width:90%'></div>
+            <div class='skeleton' style='height:10px;width:40%'></div>
+          </div>`;
+        grid.appendChild(s);
+      }
+    }
+
+    function projectCard(repo){
+      const {name, description, homepage, pushed_at} = repo;
+      const title = displayTitle(name);
+      const card = document.createElement('article');
+      card.className = 'card';
+      const pageUrl = homepage && homepage.trim() ? homepage : `https://${GITHUB_USER}.github.io/${name}/`;
+      const imgCandidates = [
+        `${pageUrl.replace(/\/$/,'')}/preview.png`,
+        `https://raw.githubusercontent.com/${GITHUB_USER}/${name}/main/preview.png`,
+        `https://raw.githubusercontent.com/${GITHUB_USER}/${name}/master/preview.png`
+      ];
+
+      const wrap = document.createElement('div');
+      wrap.className = 'thumb-wrap';
+      const img = document.createElement('img');
+      img.className = 'thumb';
+      img.alt = `${title} preview`;
+      let idx = 0;
+      function tryNext(){
+        if(idx < imgCandidates.length){
+          img.src = imgCandidates[idx++];
+        }else{
+          img.src = LOCAL_FALLBACK;
+        }
+      }
+      img.addEventListener('error', tryNext);
+      tryNext();
+
+      wrap.appendChild(img);
+
+      const body = document.createElement('div');
+      body.className = 'card-body';
+      const updated = new Date(pushed_at);
+      const prettyDate = updated.toLocaleDateString(undefined,{year:'numeric',month:'short'});
+
+      body.innerHTML = `
+        <div class="title-row">
+          <h3>${escapeHTML(title)}</h3>
+          <span class="meta">Updated ${prettyDate}</span>
         </div>
-        <!-- Footer -->
-        <div id="div-footer">Copyright © 2023 All rights reserved. / <a href="./pages/privacy-policy.html">Privacy</a></div>
-        <script src="./js/app.js"></script>
-        <script src="./js/helpers.js"></script>
-    </body>
+        <p class="meta">${escapeHTML(description || 'No description provided.')}</p>
+        `;
+        // <div class='btn-row'>
+        //   <a class='btn' href='${pageUrl}' target='_blank' rel='noopener noreferrer'>Open Project</a>
+        // </div>
+
+      const linkCover = document.createElement('a');
+      linkCover.href = pageUrl;
+      linkCover.target = '_blank';
+      linkCover.rel = 'noopener noreferrer';
+      linkCover.className = 'cardlink';
+
+      card.appendChild(wrap);
+      card.appendChild(body);
+      card.appendChild(linkCover);
+      const searchBits = [name, title, description || '', (repo && repo.language) || '', (repo && (repo.topics||[])).join(' '), homepage || ''];
+      card.dataset.search = searchBits.join(' ').toLowerCase();
+      return card;
+    }
+
+    function escapeHTML(str){
+      return String(str).replace(/[&<>\"']/g, s => ({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;','\'':'&#39;'}[s]));
+    }
+
+    function displayTitle(str){
+        return String(str).replace(/[-_]+/g, ' ').replace(/\s+/g, ' ').trim();
+    }
+
+    async function loadRepos(){
+      addSkeletonCards(8);
+      try{
+        const res = await fetch(`https://api.github.com/users/${GITHUB_USER}/repos?per_page=100&sort=updated`);
+        if(!res.ok) throw new Error(`GitHub API error: ${res.status}`);
+        const repos = await res.json();
+        const filtered = repos.filter(r => !r.fork && !r.archived && r.name !== 'andyhsmith.github.io');
+
+        grid.innerHTML = '';
+        if(filtered.length === 0){
+          const empty = document.createElement('p');
+          empty.className = 'fallback';
+          empty.textContent = 'No public repositories found.';
+          grid.appendChild(empty);
+          return;
+        }
+
+        filtered.sort((a,b)=>{
+          const aScore = (a.homepage?2:0) + (a.default_branch==='gh-pages'?1:0);
+          const bScore = (b.homepage?2:0) + (b.default_branch==='gh-pages'?1:0);
+          return bScore - aScore || (new Date(b.pushed_at) - new Date(a.pushed_at));
+        });
+
+        for(const repo of filtered){
+          const card = projectCard(repo);
+          grid.appendChild(card);
+          cards.push(card);
+        }
+        updateCount();
+      }catch(err){
+        grid.innerHTML = '';
+        const msg = document.createElement('div');
+        msg.className = 'fallback';
+        msg.innerHTML = `⚠️ Could not load repositories right now. This may be due to GitHub API rate limits. <button class='btn' id='retry'>Retry</button>`;
+        grid.appendChild(msg);
+        document.getElementById('retry')?.addEventListener('click', ()=>{ grid.innerHTML=''; loadRepos(); });
+        console.error(err);
+      }
+    }
+
+    function updateCount(){
+      const total = cards.length;
+      const visible = cards.filter(c => c.style.display !== 'none').length;
+      if(resultCount){ resultCount.textContent = (visible===total) ? `${total} repositories` : `${visible} of ${total} repositories`; }
+    }
+
+    function filterCards(q){
+      const query = (q||'').toLowerCase().trim();
+      if(!query){ cards.forEach(c => c.style.display=''); updateCount(); return; }
+      const terms = query.split(/ +/);
+      for(const c of cards){
+        const hay = c.dataset.search || '';
+        const match = terms.every(t => hay.includes(t));
+        c.style.display = match ? '' : 'none';
+      }
+      updateCount();
+    }
+
+    let tId;
+    if(searchInput){
+      searchInput.addEventListener('input', (e)=>{ clearTimeout(tId); tId = setTimeout(()=> filterCards(e.target.value), 120); });
+    }
+
+    loadRepos();
+  </script>
+</body>
 </html>
